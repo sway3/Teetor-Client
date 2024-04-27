@@ -1,14 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   ChatContent,
-  ChatMessage,
-  MessageBox,
-  MessageWrapper,
   Suggestion,
 } from './style';
 import useLoadMessages from '../../hooks/useLoadMessages';
 import useListenMessages from '../../hooks/useListenMessages';
-import { useSocketContext } from '../../context/SocketContext';
 import Message from './Message';
 import useSendMessage from '../../hooks/useSendMessage';
 
@@ -26,7 +22,6 @@ interface MessageContentProps {
 const MessageContent: React.FC<MessageContentProps> = ({ chat }) => {
   const endOfMessagesRef: any = useRef(null);
   const sendMessageMutation = useSendMessage();
-  const { socket } = useSocketContext();
   const { messages, setMessages, suggestions, setSuggestions, isPending } =
     useLoadMessages(chat._id);
   useListenMessages(messages, setMessages);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { refreshAccessToken } from '../apis/authAPIs';
@@ -9,7 +9,7 @@ const useRefresh = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data, isSuccess, isError, isPending } = useQuery({
+  const { isSuccess, isError } = useQuery({
     queryKey: ['refresh'],
     queryFn: () => refreshAccessToken(),
     enabled: !!isRefresh,

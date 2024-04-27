@@ -5,13 +5,10 @@ import { StyleSheetManager } from 'styled-components';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { AuthContextProvider } from './context/AuthContext.tsx';
 import { BrowserRouter } from 'react-router-dom';
-import { SocketContextProvider } from './context/SocketContext.tsx';
 import {
   QueryClient,
   QueryClientProvider,
-  useQuery,
 } from '@tanstack/react-query';
 
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;

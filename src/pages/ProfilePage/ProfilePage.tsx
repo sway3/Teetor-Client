@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { getUser, userLogout } from '../../apis/userAPIs';
 
 import NavBar from '../../components/NavBar/NavBar';
@@ -16,11 +16,10 @@ import {
 import AvailableDay from '../../components/common/AvailableDay/AvailableDay';
 import UserInfo from '../../components/common/UserInfo/UserInfo';
 import RoleInfo from '../../components/common/RoleInfo/RoleInfo';
-import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const ProfilePage: React.FC = () => {
-  const { isAuthed, isPending: pending } = useAuth();
+  const { isAuthed } = useAuth();
 
   const { data, isPending, error } = useQuery({
     queryKey: ['getUserInfo'],
@@ -57,7 +56,7 @@ const ProfilePage: React.FC = () => {
 
     let roleInfo: any = null;
 
-    data?.data.role.forEach((role: any, i: number) => {
+    data?.data.role.forEach((role: any, _: number) => {
       if (role !== 'mentee') {
         roleInfo = {
           profession: data?.data.mentorProfession,

@@ -4,7 +4,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import { Badge } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { useMutation } from '@tanstack/react-query';
-import { addNewEventReq, editEventReq } from '../../apis/mentoringAPIs';
+import { editEventReq } from '../../apis/mentoringAPIs';
 import {
   Button,
   ButtonWrapper,
@@ -34,14 +34,14 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
 
   const [newEventForm, setNewEventForm] = useState<any>(eventInfo);
 
-  const { loadedevents, isPending } = useLoadEvents(sessionId);
+  const { loadedevents } = useLoadEvents(sessionId);
 
   const ServerDay = (
     props: PickersDayProps<Dayjs> & { loadedevents?: string[] }
   ) => {
     const { loadedevents = [], day, outsideCurrentMonth, ...other } = props;
 
-    const formattedEvents = loadedevents.map((e: any, i: number) => {
+    const formattedEvents = loadedevents.map((e: any, _: number) => {
       return (
         new Date(e.date).getFullYear().toString() +
         new Date(e.date).getMonth().toString() +

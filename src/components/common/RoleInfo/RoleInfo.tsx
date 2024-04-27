@@ -3,8 +3,6 @@ import React from 'react';
 import {
   RoleInfoWrapper,
   RoleInfoTitle,
-  RoleInfoContent,
-  RoleInfoContentTitle,
   SkillsWrapper,
   Skills,
   Description,

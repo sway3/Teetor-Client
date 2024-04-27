@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { loadMessageRequest } from '../apis/messageAPIs';
 
 interface Message {
@@ -13,7 +13,7 @@ const useLoadMessages = (chatId: string) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [suggestions, setSuggestions] = useState<any>([]);
 
-  const { data, isPending, isError } = useQuery({
+  const { data, isPending } = useQuery({
     queryKey: ['loadMessages', chatId],
     queryFn: () => loadMessageRequest(chatId),
   });

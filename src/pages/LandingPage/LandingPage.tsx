@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { GoogleLoginButton } from './style';
 
 import DashboardPage from '../DasboardPage/DashboardPage';
 import useAuth from '../../hooks/useAuth';
 import { SocketContextProvider } from '../../context/SocketContext';
-import { AuthContextProvider, useAuthContext } from '../../context/AuthContext';
+import { AuthContextProvider } from '../../context/AuthContext';
 
 const LandingPage: React.FC = () => {
   const login = async () => {

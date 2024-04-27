@@ -3,9 +3,8 @@ import React from 'react';
 import { GridWrapper, MatchingPageWrapper } from '../MatchingPage/style';
 import MentorCard from '../../components/UI/MentorCard/MentorCard';
 
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
-import { Link } from 'react-router-dom';
 import { ProfileImg, SLink, Username } from './style';
 
 const MatchResultPage: React.FC = () => {

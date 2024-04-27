@@ -1,7 +1,5 @@
 import { useMutation } from '@tanstack/react-query';
-import React, { useState } from 'react';
 import { sendMessageRequest } from '../apis/messageAPIs';
-import { AxiosResponse } from 'axios';
 
 interface MessageInfo {
   content: string;

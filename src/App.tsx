@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Router, Routes, Route } from 'react-router-dom';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 import GlobalStyles from './styles/GlobalStyles';
 
-import DashboardPage from './pages/DasboardPage/DashboardPage';
 import MatchingPage from './pages/MatchingPage/MatchingPage';
 import MentoringRequestPage from './pages/MentoringRequest/MentoringRequestPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
@@ -15,13 +13,7 @@ import LoginLoadingPage from './pages/LoginLoadingPage/LoginLoadingPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import MatchResultPage from './pages/MatchResultPage/MatchResultPage';
 import MatchResultInfoPage from './pages/MatchResultInfoPage/MatchResultInfoPage';
-import { SocketContextProvider } from './context/SocketContext';
-import useAuth from './hooks/useAuth';
-import { AuthContextProvider, useAuthContext } from './context/AuthContext';
 
-interface ServerResponse {
-  message: string;
-}
 
 const App: React.FC = () => {
   return (

@@ -2,37 +2,33 @@ import { Dayjs } from 'dayjs';
 import React, { useState } from 'react';
 import useLoadEvents from '../../hooks/useLoadEvents';
 import { useMutation } from '@tanstack/react-query';
-import { deleteEventReq, editEventReq } from '../../apis/mentoringAPIs';
+import { deleteEventReq } from '../../apis/mentoringAPIs';
 import {
   Description,
   Title,
   DateTime,
-  EventInfoWrapper,
   EventTitle,
   ButtonWrapper,
   Button,
 } from './style';
-import DatePicker from '../Calendar/DatePicker';
 import DateEditor from '../Calendar/DateEditor';
 import moment from 'moment';
 
 interface EventInfoProps {
   pickedDate: Dayjs | null;
-  setPickedDate: React.Dispatch<React.SetStateAction<Dayjs | null>>;
   sessionId: string;
 }
 
 const EventInfo: React.FC<EventInfoProps> = ({
   pickedDate,
   sessionId,
-  setPickedDate,
 }) => {
   const { loadedevents, isPending } = useLoadEvents(sessionId);
   const [isEditEvent, setIsEditEvent] = useState<boolean>(false);
 
   let eventInfo: any;
 
-  loadedevents.forEach((e: any, i: number) => {
+  loadedevents.forEach((e: any, _: number) => {
     if (
       pickedDate?.toDate().toISOString().slice(0, 10) === e.date.slice(0, 10)
     ) {

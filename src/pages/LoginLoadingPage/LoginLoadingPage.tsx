@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import axiosInstance from '../../utils/axiosInterceptor/axiosInterceptor';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +17,7 @@ const LoginLoadingPage: React.FC = () => {
     return response;
   };
 
-  const { data, isSuccess, isPending, isError, error } =
+  const { data, isSuccess } =
     useQuery<AxiosResponse>({
       queryKey: ['google-oauth', code],
       queryFn: () => userInfoReq(code),

@@ -5,7 +5,6 @@ import {
   useState,
   useContext,
 } from 'react';
-import useAuth from '../hooks/useAuth';
 import { Socket, io } from 'socket.io-client';
 import { useAuthContext } from './AuthContext';
 

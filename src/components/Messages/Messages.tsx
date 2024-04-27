@@ -1,5 +1,4 @@
 import React, { useState, useEffect, ReactNode } from 'react';
-import { io } from 'socket.io-client';
 
 import { AxiosResponse } from 'axios';
 import { useQuery } from '@tanstack/react-query';
@@ -9,15 +8,11 @@ import {
   Title,
   ThreadContainer,
   ThreadNavigator,
-  MessagesThread,
   ChatContainer,
-  ChatInput,
-  ChatContent,
-  ChatMessage,
   Chat,
 } from './style';
 
-import { getChats, getMessageList } from '../../apis/userAPIs';
+import { getChats } from '../../apis/userAPIs';
 import MessageInput from './MessageInput';
 import MessageContent from './MessageContent';
 

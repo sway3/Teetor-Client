@@ -13,7 +13,7 @@ import AvailableDay from '../../components/common/AvailableDay/AvailableDay';
 import RoleInfo from '../../components/common/RoleInfo/RoleInfo';
 
 import NavBar from '../../components/NavBar/NavBar';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { sendMentoringRequest } from '../../apis/matchingAPIs';
 
 const MatchResultInfoPage: React.FC = () => {
@@ -42,7 +42,7 @@ const MatchResultInfoPage: React.FC = () => {
   }
 
   const mentoringRequestHandler = async () => {
-    const response = await sendMentoringRequest(mentor._id, menteeInfo);
+    await sendMentoringRequest(mentor._id, menteeInfo);
     alert('mentoring request sent!');
     navigate('/');
   };

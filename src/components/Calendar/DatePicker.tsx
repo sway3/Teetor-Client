@@ -1,12 +1,5 @@
 import React, { ChangeEvent, FormEvent, useState } from 'react';
-import {
-  PickersDay,
-  PickersDayProps,
-  StaticDateTimePicker,
-  StaticDateTimePickerSlots,
-} from '@mui/x-date-pickers';
 import dayjs, { Dayjs } from 'dayjs';
-import { Badge } from '@mui/material';
 import { DateTimePicker } from '@mui/x-date-pickers';
 import { useMutation } from '@tanstack/react-query';
 import { addNewEventReq } from '../../apis/mentoringAPIs';
@@ -37,47 +30,11 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
     description: '',
   });
 
-  const { loadedevents, isPending } = useLoadEvents(sessionId);
+  const { loadedevents } = useLoadEvents(sessionId);
 
   const addEventsMutation = useMutation({
     mutationFn: (newEvent: any) => addNewEventReq(newEvent),
   });
-
-  const ServerDay = (
-    props: PickersDayProps<Dayjs> & { loadedevents?: string[] }
-  ) => {
-    const { loadedevents = [], day, outsideCurrentMonth, ...other } = props;
-
-    const formattedEvents = loadedevents.map((e: any, i: number) => {
-      return (
-        new Date(e.date).getFullYear().toString() +
-        new Date(e.date).getMonth().toString() +
-        new Date(e.date).getDate().toString()
-      );
-    });
-
-    const isSelected =
-      !props.outsideCurrentMonth &&
-      formattedEvents.indexOf(
-        props.day.year().toString() +
-          props.day.month().toString() +
-          props.day.date().toString()
-      ) >= 0;
-
-    return (
-      <Badge
-        key={props.day.toString()}
-        overlap='circular'
-        badgeContent={isSelected ? '✅' : undefined}
-      >
-        <PickersDay
-          {...other}
-          outsideCurrentMonth={outsideCurrentMonth}
-          day={day}
-        />
-      </Badge>
-    );
-  };
 
   const formChangeHandler = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>

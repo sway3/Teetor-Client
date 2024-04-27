@@ -1,5 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import dayjs, { Dayjs } from 'dayjs';
 
 import NavBar from '../../components/NavBar/NavBar';
@@ -12,8 +12,6 @@ import {
   DashboardMainFirst,
   DashboardMainSecond,
   DashboardGoal,
-  DashboardCalendar,
-  DashboardEtc,
   MentoringThreadCard,
   MentoringThreadWrapper,
   MentoringThreadTitle,
@@ -22,14 +20,11 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { getDashInfo } from '../../apis/matchingAPIs';
 import { Link } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
-import DateTimePicker from '../../components/Calendar/DatePicker';
 import Calendar from '../../components/Calendar/Calendar';
 import EventInfo from '../../components/EventInfo/EventInfo';
 import { EventInfoWrapper } from '../../components/EventInfo/style';
 
 const DashboardPage: React.FC = () => {
-  const isAuthed = useAuth();
   const [activeThread, setActiveThread] = useState<any>(null);
   const [pickedDate, setPickedDate] = useState<Dayjs | null>(dayjs(new Date()));
 
@@ -37,7 +32,7 @@ const DashboardPage: React.FC = () => {
     setActiveThread(thread);
   };
 
-  const { data, isPending, error, refetch } = useQuery<AxiosResponse>({
+  const { data, isPending, error } = useQuery<AxiosResponse>({
     queryKey: ['user'],
     queryFn: getDashInfo,
     enabled: true,
@@ -120,7 +115,6 @@ const DashboardPage: React.FC = () => {
                 {data && activeThread && (
                   <EventInfo
                     pickedDate={pickedDate}
-                    setPickedDate={setPickedDate}
                     sessionId={activeThread?._id}
                   />
                 )}

@@ -18,8 +18,6 @@ import {
   RoleButton,
   MentorInfoWrapper,
   Title,
-  LinksWrapper,
-  Links,
   SubTitle,
   CardWrapper,
   Card,

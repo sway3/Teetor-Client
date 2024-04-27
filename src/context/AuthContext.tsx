@@ -33,13 +33,13 @@ export const useAuthContext = () => {
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [isAuthed, setIsAuthed] = useState<boolean>(false);
-  const { data, isSuccess, isPending, error, isError, refetch } = useQuery({
+  const { data, isSuccess, isPending, error, isError } = useQuery({
     queryKey: ['auth'],
     queryFn: () => checkUserAuth(),
     retry: false,
   });
 
-  const { isRefresh, setIsRefresh } = useRefresh();
+  const { setIsRefresh } = useRefresh();
 
   useEffect(() => {
     const auth = async () => {
@@ -50,7 +50,7 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
 
         if (axiosError.response?.status === 401) {
           const authHeader =
-            axiosError.response.headers.get('Www-authenticate');
+            axiosError.response.headers['Www-authenticate']
           console.log(authHeader);
 
           try {

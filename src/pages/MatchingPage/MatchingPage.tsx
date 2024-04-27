@@ -4,16 +4,13 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 // apis
-import { getMentors, sendMentoringRequest } from '../../apis/matchingAPIs';
+import { getMentors } from '../../apis/matchingAPIs';
 
 // components
 import NavBar from '../../components/NavBar/NavBar';
-import MentorCard from '../../components/UI/MentorCard/MentorCard';
-import { MatchingPageWrapper, GridWrapper } from './style';
+import { MatchingPageWrapper } from './style';
 import NeedHelpWith from '../../components/common/NeedHelpWith/NeedHelpWith';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext, AuthContextProvider } from '../../context/AuthContext';
-import { SocketContextProvider } from '../../context/SocketContext';
 
 const MatchingPage: React.FC = () => {
   const navigate = useNavigate();

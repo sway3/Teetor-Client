@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { addNewEventReq, getEventReq } from '../apis/mentoringAPIs';
+import { getEventReq } from '../apis/mentoringAPIs';
 import { useEffect, useState } from 'react';
 
 const useLoadEvents = (sessionId: any) => {
   const [loadedevents, setLoadedEvents] = useState<any>([]);
-  const { data, isPending, error } = useQuery({
+  const { data, isPending  } = useQuery({
     queryKey: ['loadEvents', sessionId],
     queryFn: () => getEventReq(sessionId),
     enabled: !!sessionId,

@@ -1,4 +1,3 @@
-import { DateCalendar } from '@mui/x-date-pickers';
 import styled from 'styled-components';
 
 export const DashboardWrapper = styled.div`

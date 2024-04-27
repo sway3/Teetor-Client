@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
@@ -124,7 +124,7 @@ const MentoringRequestPage: React.FC = () => {
               <NeedHelpWrapper>
                 <h3>I need help with...</h3>
                 <Skills>
-                  {menteeNeedHelpWith.map((skill: string, i: number) => {
+                  {menteeNeedHelpWith.map((skill: string, _: number) => {
                     return <Card>{skill}</Card>;
                   })}
                 </Skills>

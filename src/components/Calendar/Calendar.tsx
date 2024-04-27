@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { DateCalendar, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
+import { Dayjs } from 'dayjs';
 import { Badge } from '@mui/material';
 import { Button, CalendarTitle } from './style';
 import DatePicker from './DatePicker';
 import useLoadEvents from '../../hooks/useLoadEvents';
-import { useQuery } from '@tanstack/react-query';
-import { getEventReq } from '../../apis/mentoringAPIs';
 
 interface CalendarProps {
   sessionId: string;
@@ -19,9 +17,7 @@ const Calendar: React.FC<CalendarProps> = ({
   pickedDate,
   setPickedDate,
 }) => {
-  const [isDatePicker, setIsDatePicker] = useState<boolean>(false);
-
-  const { loadedevents, isPending } = useLoadEvents(sessionId);
+  const { loadedevents } = useLoadEvents(sessionId);
 
   const [isDisplay, setIsDisplay] = useState<boolean>(false);
 
@@ -30,7 +26,7 @@ const Calendar: React.FC<CalendarProps> = ({
   ) => {
     const { loadedevents = [], day, outsideCurrentMonth, ...other } = props;
 
-    const formattedEvents = loadedevents.map((e: any, i: number) => {
+    const formattedEvents = loadedevents.map((e: any, _: number) => {
       return (
         new Date(e.date).getFullYear().toString() +
         new Date(e.date).getMonth().toString() +
@@ -92,8 +88,6 @@ const Calendar: React.FC<CalendarProps> = ({
       {isDisplay && (
         <>
           <DatePicker
-            pickedDate={pickedDate}
-            setPickedDate={setPickedDate}
             sessionId={sessionId}
             isDisplay={isDisplay}
             setIsDisplay={setIsDisplay}

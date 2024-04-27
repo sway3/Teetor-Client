@@ -148,4 +148,5 @@ export const canHelpWithArray = [
   ...mobiledev,
   ...webassembly,
   ...gamedev,
+  ...blockchain,
 ];

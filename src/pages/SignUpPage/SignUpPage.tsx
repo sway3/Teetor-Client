@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import { useLocation } from 'react-router-dom';
 
-import NavBar from '../../components/NavBar/NavBar';
 import UserInfoForm from '../../components/common/UserInfoForm/UserInfoForm';
 
 const SignUpPage: React.FC = () => {
