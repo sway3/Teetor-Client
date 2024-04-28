@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const RequestWrapper = styled.div`
   padding: 2rem 5rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const RequestTitle = styled.h1`
@@ -23,6 +27,10 @@ export const RequestInfoWrapper = styled.div`
   padding: 2rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 export const NeedHelpWrapper = styled.div`

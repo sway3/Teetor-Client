@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   AvailableDayContentWrapper,
@@ -7,14 +7,14 @@ import {
   ProfilePageWrapper,
   SNSInfo,
   SNSInfoWrapper,
-} from '../ProfilePage/style';
-import UserInfo from '../../components/common/UserInfo/UserInfo';
-import AvailableDay from '../../components/common/AvailableDay/AvailableDay';
-import RoleInfo from '../../components/common/RoleInfo/RoleInfo';
+} from "../ProfilePage/style";
+import UserInfo from "../../components/common/UserInfo/UserInfo";
+import AvailableDay from "../../components/common/AvailableDay/AvailableDay";
+import RoleInfo from "../../components/common/RoleInfo/RoleInfo";
 
-import NavBar from '../../components/NavBar/NavBar';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { sendMentoringRequest } from '../../apis/matchingAPIs';
+import NavBar from "../../components/NavBar/NavBar";
+import { useLocation, useNavigate } from "react-router-dom";
+import { sendMentoringRequest } from "../../apis/matchingAPIs";
 
 const MatchResultInfoPage: React.FC = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const MatchResultInfoPage: React.FC = () => {
 
   let roleInfo: any = null;
 
-  if (userInfo.role !== 'mentee') {
+  if (userInfo.role !== "mentee") {
     roleInfo = {
       profession: mentor.mentorProfession,
       canHelpWith: mentor.mentorCanHelpWith,
@@ -43,8 +43,8 @@ const MatchResultInfoPage: React.FC = () => {
 
   const mentoringRequestHandler = async () => {
     await sendMentoringRequest(mentor._id, menteeInfo);
-    alert('mentoring request sent!');
-    navigate('/');
+    alert("mentoring request sent!");
+    navigate("/");
   };
 
   return (
@@ -63,7 +63,7 @@ const MatchResultInfoPage: React.FC = () => {
               <AvailableDay availableDays={availableDays} />
             </AvailableDayContentWrapper>
           </PersonalInfoWrapper>
-          {mentor.role !== 'mentee' && <RoleInfo roleInfo={roleInfo} />}
+          {mentor.role !== "mentee" && <RoleInfo roleInfo={roleInfo} />}
           <button onClick={mentoringRequestHandler}>Request mentoring</button>
         </ProfilePageContent>
       </ProfilePageWrapper>

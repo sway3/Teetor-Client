@@ -1,5 +1,5 @@
-import { AxiosResponse } from 'axios';
-import axiosInstance from '../utils/axiosInterceptor/axiosInterceptor';
+import { AxiosResponse } from "axios";
+import axiosInstance from "../utils/axiosInterceptor/axiosInterceptor";
 
 interface MessageInfo {
   content: string;
@@ -17,5 +17,12 @@ export const loadMessageRequest = async (
   chatId: string
 ): Promise<AxiosResponse> => {
   const response = await axiosInstance.get(`/messages/${chatId}`);
+  return response;
+};
+
+export const getSuggestionRequest = async (
+  chatId: string
+): Promise<AxiosResponse> => {
+  const response = await axiosInstance.get(`/messages/${chatId}/suggestions`);
   return response;
 };

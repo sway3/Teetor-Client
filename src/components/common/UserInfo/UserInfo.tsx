@@ -7,7 +7,6 @@ import {
   UserName,
   Email,
   Role,
-  EditButton,
   Roles,
 } from './style';
 
@@ -34,7 +33,6 @@ const UserInfo: React.FC<UserInfoProps> = ({ user }) => {
       </Roles>
       <UserName>@{user.userName}</UserName>
       <Email>{user.email}</Email>
-      <EditButton to='/edit'>Edit Profile</EditButton>
     </UserInfoWrapper>
   );
 };

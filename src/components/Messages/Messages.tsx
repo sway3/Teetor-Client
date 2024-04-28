@@ -1,7 +1,7 @@
-import React, { useState, useEffect, ReactNode } from 'react';
+import React, { useState, useEffect, ReactNode } from "react";
 
-import { AxiosResponse } from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { AxiosResponse } from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   Container,
@@ -10,11 +10,12 @@ import {
   ThreadNavigator,
   ChatContainer,
   Chat,
-} from './style';
+} from "./style";
 
-import { getChats } from '../../apis/userAPIs';
-import MessageInput from './MessageInput';
-import MessageContent from './MessageContent';
+import { getChats } from "../../apis/userAPIs";
+import MessageInput from "./MessageInput";
+import MessageContent from "./MessageContent";
+import useAuth from "../../hooks/useAuth";
 
 interface Chat {
   _id: string;
@@ -24,15 +25,17 @@ interface Chat {
 }
 
 const Messages: React.FC = () => {
+  const { isAuthed } = useAuth();
+  console.log("isAuthed", isAuthed);
   const [targetChat, setTargetChat] = useState<Chat>({
-    _id: '',
+    _id: "",
     participants: [],
-    latestContent: '',
-    timestamp: '',
+    latestContent: "",
+    timestamp: "",
   });
 
   const { data, isPending, error } = useQuery<AxiosResponse>({
-    queryKey: ['chats'],
+    queryKey: ["chats"],
     queryFn: () => getChats(),
   });
 
@@ -59,13 +62,17 @@ const Messages: React.FC = () => {
       chats.length !== 0 ? (
         <>
           {chats.map((chat: Chat, index: number) => {
+            const userId = localStorage.getItem("id");
+            const recipient: any = chat.participants.filter(
+              (p: any) => p._id !== userId
+            );
             return (
               <Chat
                 key={index}
                 onClick={() => setTargetChat(chat)}
                 $isActive={targetChat._id === chat._id}
               >
-                {chat._id}
+                {recipient[0].firstName}
               </Chat>
             );
           })}
@@ -85,7 +92,9 @@ const Messages: React.FC = () => {
           </ThreadNavigator>
         </ThreadContainer>
         <ChatContainer>
-          {data && targetChat && <MessageContent chat={targetChat} />}
+          {data && targetChat && isAuthed && (
+            <MessageContent chat={targetChat} />
+          )}
           <MessageInput chat={targetChat} />
         </ChatContainer>
       </Container>

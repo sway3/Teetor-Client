@@ -1,21 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 // react-query
-import { useQuery } from '@tanstack/react-query';
+import { useQuery } from "@tanstack/react-query";
 
 // apis
-import { getMentors } from '../../apis/matchingAPIs';
+import { getMentors } from "../../apis/matchingAPIs";
 
 // components
-import NavBar from '../../components/NavBar/NavBar';
-import { MatchingPageWrapper } from './style';
-import NeedHelpWith from '../../components/common/NeedHelpWith/NeedHelpWith';
-import { useNavigate } from 'react-router-dom';
+import NavBar from "../../components/NavBar/NavBar";
+import { MatchingPageWrapper } from "./style";
+import NeedHelpWith from "../../components/common/NeedHelpWith/NeedHelpWith";
+import { useNavigate } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 
 const MatchingPage: React.FC = () => {
+  const { isAuthed } = useAuth();
   const navigate = useNavigate();
   const [needHelpWith, setNeedHelpWith] = useState<string[]>([]);
-  const [description, setDescription] = useState<string>('');
+  const [description, setDescription] = useState<string>("");
 
   const searchNeedHelpHandler = (e: React.MouseEvent<HTMLElement>) => {
     const targetNeedHelp = e.currentTarget.innerHTML;
@@ -41,7 +43,7 @@ const MatchingPage: React.FC = () => {
   };
 
   const { data, isPending, error, refetch } = useQuery({
-    queryKey: ['getMentors', needHelpWith, description],
+    queryKey: ["getMentors", needHelpWith, description],
     queryFn: () => getMentors(needHelpWith, description),
     enabled: false,
   });
@@ -66,7 +68,7 @@ const MatchingPage: React.FC = () => {
 
   if (data) {
     const mentors = data.data;
-    navigate('/match-result', {
+    navigate("/match-result", {
       state: {
         mentors: mentors,
         menteeInfo: { description: description, needHelpWith: needHelpWith },

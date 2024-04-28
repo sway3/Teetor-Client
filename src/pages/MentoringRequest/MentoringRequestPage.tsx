@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 import {
   getMentoringRequest,
   setMentoringRequestStatus,
-} from '../../apis/matchingAPIs';
+} from "../../apis/matchingAPIs";
 
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from "../../components/NavBar/NavBar";
 import {
   Button,
   ButtonWrapper,
@@ -20,25 +20,25 @@ import {
   RequestTitle,
   RequestWrapper,
   Skills,
-} from './style';
+} from "./style";
 import {
   AvailableDayContentWrapper,
   PersonalInfoWrapper,
   ProfilePageContent,
   SNSInfo,
   SNSInfoWrapper,
-} from '../ProfilePage/style';
-import UserInfo from '../../components/common/UserInfo/UserInfo';
-import AvailableDay from '../../components/common/AvailableDay/AvailableDay';
-import { Card } from '../../components/common/NeedHelpWith/style';
+} from "../ProfilePage/style";
+import UserInfo from "../../components/common/UserInfo/UserInfo";
+import AvailableDay from "../../components/common/AvailableDay/AvailableDay";
+import { Card } from "../../components/common/NeedHelpWith/style";
 
 const MentoringRequestPage: React.FC = () => {
   const [isAccepted, setIsAccepted] = useState(false);
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const { id: notificationId } = useParams() as any;
 
   const { data, isPending, error } = useQuery({
-    queryKey: ['getMentoringRequest', notificationId],
+    queryKey: ["getMentoringRequest", notificationId],
     queryFn: () => getMentoringRequest(notificationId),
   });
 
@@ -54,15 +54,15 @@ const MentoringRequestPage: React.FC = () => {
 
   const formSubmitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    setMentoringRequestStatus(notificationId, 'accepted', title);
-    alert('New mentoring session created! Start off by messaging your mentor.');
-    navigate('/');
+    setMentoringRequestStatus(notificationId, "accepted", title);
+    alert("New mentoring session created! Start off by messaging your mentor.");
+    navigate("/");
   };
 
   const declineRequestHandler = () => {
-    setMentoringRequestStatus(notificationId, 'declined');
-    alert('Mentoring request is declined.');
-    navigate('/dashboard');
+    setMentoringRequestStatus(notificationId, "declined");
+    alert("Mentoring request is declined.");
+    navigate("/dashboard");
   };
 
   let content: React.ReactNode = null;
@@ -78,7 +78,7 @@ const MentoringRequestPage: React.FC = () => {
   if (data) {
     const status = data.data.notification.status;
 
-    if (status === 'pending') {
+    if (status === "pending") {
       if (isAccepted) {
         content = (
           <>
@@ -86,12 +86,8 @@ const MentoringRequestPage: React.FC = () => {
               Please enter the title of this new mentoring session.
             </Instruction>
             <form onSubmit={formSubmitHandler}>
-              <Input
-                type='text'
-                onChange={titleChangeHandler}
-                value={title}
-              />
-              <Button type='submit'>submit</Button>
+              <Input type="text" onChange={titleChangeHandler} value={title} />
+              <Button type="submit">submit</Button>
             </form>
           </>
         );
@@ -110,11 +106,6 @@ const MentoringRequestPage: React.FC = () => {
             <ProfilePageContent>
               <PersonalInfoWrapper>
                 <UserInfo user={userInfo} />
-                <SNSInfoWrapper>
-                  <SNSInfo />
-                  <SNSInfo />
-                  <SNSInfo />
-                </SNSInfoWrapper>
                 <AvailableDayContentWrapper>
                   <AvailableDay availableDays={availableDays} />
                 </AvailableDayContentWrapper>
@@ -134,7 +125,7 @@ const MentoringRequestPage: React.FC = () => {
                 <Description>
                   {menteeDescription
                     ? menteeDescription
-                    : 'The mentee did not write any description about the request.'}
+                    : "The mentee did not write any description about the request."}
                 </Description>
               </div>
             </RequestInfoWrapper>

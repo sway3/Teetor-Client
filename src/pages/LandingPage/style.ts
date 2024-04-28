@@ -11,3 +11,22 @@ export const GoogleLoginButton = styled.button`
   border: none; // Adjust as needed
   cursor: pointer;
 `;
+
+export const LandingPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #155C2F;
+`;
+
+export const Welcome = styled.h1`
+  font-size: 3rem;
+  font-weight: 900;
+  color: #fff;
+
+  @media (max-width: 768px) {
+    font-size: 2rem;
+  }
+`;

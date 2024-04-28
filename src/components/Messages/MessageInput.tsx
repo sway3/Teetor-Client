@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { ChatButton, ChatForm, ChatInput } from './style';
-import useSendMessage from '../../hooks/useSendMessage';
+import React, { useState } from "react";
+import { ChatButton, ChatForm, ChatInput } from "./style";
+import useSendMessage from "../../hooks/useSendMessage";
 
 interface Chat {
   _id: string;
@@ -14,7 +14,7 @@ interface MessageInputProps {
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({ chat }) => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
   const sendMessageMutation = useSendMessage();
 
   const sendMessage = (e: React.FormEvent) => {
@@ -30,18 +30,20 @@ const MessageInput: React.FC<MessageInputProps> = ({ chat }) => {
     };
 
     sendMessageMutation.mutate(messageInfo);
-    setInput('');
+    setInput("");
   };
 
   return (
-    <ChatForm onSubmit={sendMessage}>
-      <ChatInput
-        type='text'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <ChatButton type='submit'>Send</ChatButton>
-    </ChatForm>
+    <>
+      <ChatForm onSubmit={sendMessage}>
+        <ChatInput
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <ChatButton type="submit">Send</ChatButton>
+      </ChatForm>
+    </>
   );
 };
 

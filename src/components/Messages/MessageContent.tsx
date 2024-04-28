@@ -1,12 +1,12 @@
-import React, { useEffect, useRef } from 'react';
-import {
-  ChatContent,
-  Suggestion,
-} from './style';
-import useLoadMessages from '../../hooks/useLoadMessages';
-import useListenMessages from '../../hooks/useListenMessages';
-import Message from './Message';
-import useSendMessage from '../../hooks/useSendMessage';
+import React, { useEffect, useRef, useState } from "react";
+import { ChatContent, SuggestButton, Suggestion } from "./style";
+import useLoadMessages from "../../hooks/useLoadMessages";
+import useListenMessages from "../../hooks/useListenMessages";
+import Message from "./Message";
+import useSendMessage from "../../hooks/useSendMessage";
+import useAuth from "../../hooks/useAuth";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getSuggestionRequest } from "../../apis/messageAPIs";
 
 interface Chat {
   _id: string;
@@ -20,17 +20,12 @@ interface MessageContentProps {
 }
 
 const MessageContent: React.FC<MessageContentProps> = ({ chat }) => {
+  const { isAuthed } = useAuth();
+  console.log(isAuthed);
   const endOfMessagesRef: any = useRef(null);
   const sendMessageMutation = useSendMessage();
-  const { messages, setMessages, suggestions, setSuggestions, isPending } =
-    useLoadMessages(chat._id);
+  const { messages, setMessages, isPending } = useLoadMessages(chat._id);
   useListenMessages(messages, setMessages);
-
-  console.log(suggestions.choices);
-
-  useEffect(() => {
-    endOfMessagesRef.current?.scrollIntoView();
-  }, [messages]);
 
   const sendSuggestionHandler = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
@@ -41,38 +36,49 @@ const MessageContent: React.FC<MessageContentProps> = ({ chat }) => {
     };
 
     sendMessageMutation.mutate(messageInfo);
-    setSuggestions([]);
   };
 
+  const {
+    data,
+    isPending: sugPending,
+    refetch,
+    isFetching,
+  } = useQuery({
+    queryKey: ["getSuggestions"],
+    queryFn: () => getSuggestionRequest(chat._id),
+    enabled: false,
+  });
+
+  useEffect(() => {
+    endOfMessagesRef.current?.scrollIntoView();
+  }, [messages, data]);
+
   return (
-    <ChatContent>
-      {isPending && <p>loading...</p>}
+    <>
+      <ChatContent>
+        {isPending && <p>loading...</p>}
 
-      {!isPending &&
-        suggestions &&
-        suggestions.map((sug: string, i: number) => {
-          return (
-            <Suggestion
-              key={i}
-              onClick={sendSuggestionHandler}
-            >
-              {sug}
-            </Suggestion>
-          );
-        })}
-      <div ref={endOfMessagesRef} />
+        {!isPending &&
+          messages &&
+          messages.map((message: any, index) => {
+            return <Message key={index} message={message} />;
+          })}
 
-      {!isPending &&
-        messages &&
-        messages.map((message: any, index) => {
-          return (
-            <Message
-              key={index}
-              message={message}
-            />
-          );
-        })}
-    </ChatContent>
+        {!sugPending &&
+          data?.data &&
+          data.data.map((sug: string, i: number) => {
+            return (
+              <Suggestion key={i} onClick={sendSuggestionHandler}>
+                {sug}
+              </Suggestion>
+            );
+          })}
+
+        {isFetching && <p>loading suggestions...</p>}
+        <div ref={endOfMessagesRef} />
+      </ChatContent>
+      <SuggestButton onClick={() => refetch()}>Get suggestions</SuggestButton>
+    </>
   );
 };
 

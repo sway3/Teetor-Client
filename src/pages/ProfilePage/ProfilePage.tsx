@@ -1,28 +1,29 @@
-import React from 'react';
+import React from "react";
 
-import { useQuery } from '@tanstack/react-query';
-import { getUser, userLogout } from '../../apis/userAPIs';
+import { useQuery } from "@tanstack/react-query";
+import { getUser, userLogout } from "../../apis/userAPIs";
 
-import NavBar from '../../components/NavBar/NavBar';
+import NavBar from "../../components/NavBar/NavBar";
 import {
   ProfilePageWrapper,
   ProfilePageContent,
   PersonalInfoWrapper,
-  SNSInfo,
   AvailableDayContentWrapper,
-  SNSInfoWrapper,
-} from './style';
+} from "./style";
 
-import AvailableDay from '../../components/common/AvailableDay/AvailableDay';
-import UserInfo from '../../components/common/UserInfo/UserInfo';
-import RoleInfo from '../../components/common/RoleInfo/RoleInfo';
-import useAuth from '../../hooks/useAuth';
+import AvailableDay from "../../components/common/AvailableDay/AvailableDay";
+import UserInfo from "../../components/common/UserInfo/UserInfo";
+import RoleInfo from "../../components/common/RoleInfo/RoleInfo";
+import useAuth from "../../hooks/useAuth";
+import { EditButton } from "../../components/common/UserInfo/style";
+import { AuthContextProvider } from "../../context/AuthContext";
+import { SocketContextProvider } from "../../context/SocketContext";
 
 const ProfilePage: React.FC = () => {
   const { isAuthed } = useAuth();
 
   const { data, isPending, error } = useQuery({
-    queryKey: ['getUserInfo'],
+    queryKey: ["getUserInfo"],
     queryFn: getUser,
     enabled: !!isAuthed,
   });
@@ -57,7 +58,7 @@ const ProfilePage: React.FC = () => {
     let roleInfo: any = null;
 
     data?.data.role.forEach((role: any, _: number) => {
-      if (role !== 'mentee') {
+      if (role !== "mentee") {
         roleInfo = {
           profession: data?.data.mentorProfession,
           canHelpWith: data?.data.mentorCanHelpWith,
@@ -70,12 +71,8 @@ const ProfilePage: React.FC = () => {
       <ProfilePageContent>
         <PersonalInfoWrapper>
           <UserInfo user={userInfo} />
+          <EditButton to="/edit">Edit Profile</EditButton>
           <button onClick={logoutHandler}>logout</button>
-          <SNSInfoWrapper>
-            <SNSInfo />
-            <SNSInfo />
-            <SNSInfo />
-          </SNSInfoWrapper>
           <AvailableDayContentWrapper>
             <AvailableDay availableDays={availableDays} />
           </AvailableDayContentWrapper>
@@ -86,14 +83,10 @@ const ProfilePage: React.FC = () => {
   }
 
   return (
-    <>
-      {isAuthed && (
-        <>
-          <NavBar />
-          <ProfilePageWrapper>{content}</ProfilePageWrapper>
-        </>
-      )}
-    </>
+    <AuthContextProvider>
+      <NavBar />
+      <ProfilePageWrapper>{content}</ProfilePageWrapper>
+    </AuthContextProvider>
   );
 };
 

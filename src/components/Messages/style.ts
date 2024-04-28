@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -31,7 +31,7 @@ export const ThreadContainer = styled.div`
 
   @media (max-width: 768px) {
     width: 100%;
-    height: 15rem;
+    height: 10rem;
     overflow-y: auto;
     border-right: none;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -53,6 +53,10 @@ export const ChatContainer = styled.div`
   width: 100%;
   height: 100%;
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    height: 30rem;
+  }
 `;
 
 export const ChatInput = styled.input`
@@ -76,7 +80,7 @@ interface ChatMessageProps {
 
 export const ChatMessage = styled.div<ChatMessageProps>`
   display: flex;
-  justify-content: ${(props) => (props.$fromMe ? 'right' : 'left')};
+  justify-content: ${(props) => (props.$fromMe ? "right" : "left")};
 `;
 
 interface ChatProps {
@@ -86,13 +90,13 @@ interface ChatProps {
 export const Chat = styled.div<ChatProps>`
   padding: 1rem;
 
-  background-color: ${(props) => (props.$isActive ? '#14452F' : '#fff')};
-  color: ${(props) => (props.$isActive ? '#fff' : '#000')};
+  background-color: ${(props) => (props.$isActive ? "#14452F" : "#fff")};
+  color: ${(props) => (props.$isActive ? "#fff" : "#000")};
 `;
 
 export const MessageWrapper = styled.div<ChatMessageProps>`
   display: flex;
-  flex-direction: ${(props) => (props.$fromMe ? 'row-reverse' : 'row')};
+  flex-direction: ${(props) => (props.$fromMe ? "row-reverse" : "row")};
   align-items: center;
 `;
 
@@ -101,8 +105,8 @@ export const MessageBox = styled.div<ChatMessageProps>`
   margin: 0 0.5rem;
   border-radius: 1rem;
   max-width: 30rem;
-  background-color: ${(props) => (props.$fromMe ? '#14452F' : '#cccccc')};
-  color: ${(props) => (props.$fromMe ? '#fff' : '#000')};
+  background-color: ${(props) => (props.$fromMe ? "#14452F" : "#cccccc")};
+  color: ${(props) => (props.$fromMe ? "#fff" : "#000")};
 `;
 
 export const Suggestion = styled.div`
@@ -125,4 +129,13 @@ export const ChatButton = styled.button`
 
 export const ChatForm = styled.form`
   display: flex;
+`;
+
+export const SuggestButton = styled.button`
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: #14452f;
+  color: #fff;
+  cursor: pointer;
 `;
