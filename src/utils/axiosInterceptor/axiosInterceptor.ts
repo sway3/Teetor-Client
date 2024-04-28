@@ -1,8 +1,7 @@
-import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
-import { BASE_URL } from '../../config/config';
+import axios, { AxiosInstance, InternalAxiosRequestConfig } from "axios";
 
 const axiosInstance: AxiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: import.meta.env.VITE_BASE_URL,
   withCredentials: true,
 });
 
