@@ -40,12 +40,10 @@ const EditProfilePage: React.FC = () => {
   return (
     <>
       {isAuthed ? (
-        <AuthContextProvider>
-          <SocketContextProvider>
-            <NavBar />
-            {content}
-          </SocketContextProvider>
-        </AuthContextProvider>
+        <>
+          <NavBar />
+          {content}
+        </>
       ) : (
         <LoginPage />
       )}

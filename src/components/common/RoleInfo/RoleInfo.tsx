@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   RoleInfoWrapper,
@@ -6,7 +6,7 @@ import {
   SkillsWrapper,
   Skills,
   Description,
-} from '../../../pages/ProfilePage/style';
+} from "../../../pages/ProfilePage/style";
 
 interface RoleInfoProps {
   roleInfo: {
@@ -23,6 +23,12 @@ const RoleInfo: React.FC<RoleInfoProps> = ({ roleInfo }) => {
       <SkillsWrapper>
         {roleInfo.profession.map((prof, index) => (
           <Skills key={index}>{prof}</Skills>
+        ))}
+      </SkillsWrapper>
+      <RoleInfoTitle>I can help you with...</RoleInfoTitle>
+      <SkillsWrapper>
+        {roleInfo.canHelpWith.map((help, index) => (
+          <Skills key={index}>{help}</Skills>
         ))}
       </SkillsWrapper>
       <Description>{roleInfo.description}</Description>

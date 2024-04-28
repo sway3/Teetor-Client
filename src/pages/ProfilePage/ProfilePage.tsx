@@ -62,7 +62,7 @@ const ProfilePage: React.FC = () => {
         roleInfo = {
           profession: data?.data.mentorProfession,
           canHelpWith: data?.data.mentorCanHelpWith,
-          description: data?.data.mentorDescription,
+          description: data?.data.description,
         };
       }
     });

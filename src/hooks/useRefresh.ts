@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { refreshAccessToken } from '../apis/authAPIs';
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { refreshAccessToken } from "../apis/authAPIs";
 
 const useRefresh = () => {
   const [isRefresh, setIsRefresh] = useState<boolean>(false);
@@ -10,7 +10,7 @@ const useRefresh = () => {
   const queryClient = useQueryClient();
 
   const { isSuccess, isError } = useQuery({
-    queryKey: ['refresh'],
+    queryKey: ["refresh"],
     queryFn: () => refreshAccessToken(),
     enabled: !!isRefresh,
     retry: false,
@@ -20,11 +20,11 @@ const useRefresh = () => {
     const refresh = () => {
       if (isRefresh) {
         if (isSuccess) {
-          queryClient.invalidateQueries({ queryKey: ['auth'] });
+          queryClient.invalidateQueries({ queryKey: ["auth"] });
         }
 
         if (isError) {
-          navigate('/');
+          navigate("/");
         }
 
         setIsRefresh(false);
@@ -34,7 +34,7 @@ const useRefresh = () => {
     refresh();
   }, [isSuccess, isError]);
 
-  return { isRefresh, setIsRefresh };
+  return { isRefresh, setIsRefresh, isSuccess };
 };
 
 export default useRefresh;
