@@ -5,13 +5,6 @@ import { useQuery } from "@tanstack/react-query";
 import { getUser } from "../../apis/userAPIs";
 import UserInfoForm from "../../components/common/UserInfoForm/UserInfoForm";
 import useAuth from "../../hooks/useAuth";
-import { AuthContextProvider } from "../../context/AuthContext";
-import { SocketContextProvider } from "../../context/SocketContext";
-import {
-  GoogleLoginButton,
-  LandingPageWrapper,
-  Welcome,
-} from "../LandingPage/style";
 import LoginPage from "../../components/common/Login/LoginPage";
 
 const EditProfilePage: React.FC = () => {

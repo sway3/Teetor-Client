@@ -25,8 +25,6 @@ import {
   AvailableDayContentWrapper,
   PersonalInfoWrapper,
   ProfilePageContent,
-  SNSInfo,
-  SNSInfoWrapper,
 } from "../ProfilePage/style";
 import UserInfo from "../../components/common/UserInfo/UserInfo";
 import AvailableDay from "../../components/common/AvailableDay/AvailableDay";

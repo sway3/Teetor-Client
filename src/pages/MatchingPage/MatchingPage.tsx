@@ -14,7 +14,6 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 
 const MatchingPage: React.FC = () => {
-  const { isAuthed } = useAuth();
   const navigate = useNavigate();
   const [needHelpWith, setNeedHelpWith] = useState<string[]>([]);
   const [description, setDescription] = useState<string>("");

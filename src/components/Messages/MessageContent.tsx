@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ChatContent, SuggestButton, Suggestion } from "./style";
 import useLoadMessages from "../../hooks/useLoadMessages";
 import useListenMessages from "../../hooks/useListenMessages";
 import Message from "./Message";
 import useSendMessage from "../../hooks/useSendMessage";
 import useAuth from "../../hooks/useAuth";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getSuggestionRequest } from "../../apis/messageAPIs";
 
 interface Chat {

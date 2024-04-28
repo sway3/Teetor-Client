@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 import DashboardPage from "../DasboardPage/DashboardPage";
 import useAuth from "../../hooks/useAuth";

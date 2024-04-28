@@ -17,7 +17,6 @@ import RoleInfo from "../../components/common/RoleInfo/RoleInfo";
 import useAuth from "../../hooks/useAuth";
 import { EditButton } from "../../components/common/UserInfo/style";
 import { AuthContextProvider } from "../../context/AuthContext";
-import { SocketContextProvider } from "../../context/SocketContext";
 
 const ProfilePage: React.FC = () => {
   const { isAuthed } = useAuth();
