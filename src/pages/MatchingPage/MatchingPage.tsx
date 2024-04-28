@@ -11,7 +11,6 @@ import NavBar from "../../components/NavBar/NavBar";
 import { MatchingPageWrapper } from "./style";
 import NeedHelpWith from "../../components/common/NeedHelpWith/NeedHelpWith";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
 
 const MatchingPage: React.FC = () => {
   const navigate = useNavigate();
