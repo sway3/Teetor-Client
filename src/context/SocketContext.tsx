@@ -26,9 +26,11 @@ export const useSocketContext = () => {
   return useContext(SocketContext);
 };
 
+//base
 export const SocketContextProvider = ({
   children,
 }: SocketContextProviderProps) => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const [socket, setSocket] = useState<Socket | null>(null);
   const [onlineUsers, setOnlineUsers] = useState<any>([]);
   const { isAuthed } = useAuthContext();
@@ -36,7 +38,7 @@ export const SocketContextProvider = ({
   useEffect(() => {
     if (isAuthed) {
       console.log("hi");
-      const socket: Socket = io(import.meta.env.VITE_BASE_URL, {
+      const socket: Socket = io(BASE_URL, {
         withCredentials: true,
       });
 
