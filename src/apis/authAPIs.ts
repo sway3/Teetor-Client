@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import axiosInstance from "../utils/axiosInterceptor/axiosInterceptor";
 
-//checkk
+//check
 export const checkUserAuth = async (): Promise<AxiosResponse> => {
   const response = await axiosInstance.post("/auth");
   return response;
