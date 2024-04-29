@@ -40,6 +40,7 @@ export const SocketContextProvider = ({
       console.log("hi");
       const socket: Socket = io(BASE_URL, {
         withCredentials: true,
+        transports: ["websocket"],
       });
 
       setSocket(socket);
