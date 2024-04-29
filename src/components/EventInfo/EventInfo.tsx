@@ -35,6 +35,10 @@ const EventInfo: React.FC<EventInfoProps> = ({ pickedDate, sessionId }) => {
 
   const removeEventMutation = useMutation({
     mutationFn: (eventInfo: any) => deleteEventReq(eventInfo),
+    onSuccess: () => {
+      alert("Successfully removed meeting");
+      location.reload();
+    },
   });
 
   const removeEventHandler = () => {
@@ -43,11 +47,6 @@ const EventInfo: React.FC<EventInfoProps> = ({ pickedDate, sessionId }) => {
       eventId: eventInfo._id,
     };
     removeEventMutation.mutate(event);
-
-    if (removeEventMutation.isSuccess) {
-      alert("Successfully removed meeting");
-      location.reload();
-    }
   };
 
   return (

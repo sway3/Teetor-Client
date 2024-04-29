@@ -85,6 +85,10 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
 
   const editEventMutation = useMutation({
     mutationFn: (eventInfo: any) => editEventReq(eventInfo),
+    onSuccess: () => {
+      alert("Successfully edited meeting");
+      location.reload();
+    },
   });
 
   const submitEditSessionHandler = (e: FormEvent) => {
@@ -101,11 +105,6 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
       };
 
       editEventMutation.mutate(newEvent);
-
-      if (editEventMutation.isSuccess) {
-        alert("Meeting is successfully edited.");
-        location.reload();
-      }
     }
   };
 

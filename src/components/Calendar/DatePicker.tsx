@@ -35,6 +35,10 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
 
   const addEventsMutation = useMutation({
     mutationFn: (newEvent: any) => addNewEventReq(newEvent),
+    onSuccess: () => {
+      alert("Successfully added meeting");
+      location.reload();
+    },
   });
 
   const formChangeHandler = (
@@ -59,11 +63,6 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
         description: newEventForm.description,
       };
       addEventsMutation.mutate(newEvent);
-
-      if (addEventsMutation.isSuccess) {
-        alert("new meeting is successfully added.");
-        location.reload();
-      }
     }
   };
 
