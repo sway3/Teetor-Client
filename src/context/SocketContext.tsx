@@ -41,6 +41,7 @@ export const SocketContextProvider = ({
       const socket: Socket = io(BASE_URL, {
         withCredentials: true,
         transports: ["websocket"],
+        secure: true,
       });
 
       setSocket(socket);
