@@ -4,9 +4,9 @@ import {
   useEffect,
   useState,
   useContext,
-} from 'react';
-import { Socket, io } from 'socket.io-client';
-import { useAuthContext } from './AuthContext';
+} from "react";
+import { Socket, io } from "socket.io-client";
+import { useAuthContext } from "./AuthContext";
 
 type ContextType = {
   socket: Socket | null;
@@ -35,14 +35,14 @@ export const SocketContextProvider = ({
 
   useEffect(() => {
     if (isAuthed) {
-      console.log('hi');
-      const socket: Socket = io('http://localhost:3001', {
+      console.log("hi");
+      const socket: Socket = io(import.meta.env.VITE_BASE_URL, {
         withCredentials: true,
       });
 
       setSocket(socket);
 
-      socket.on('getOnlineUsers', (users) => {
+      socket.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
 
