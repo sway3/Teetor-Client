@@ -6,6 +6,7 @@ const axiosInstance: AxiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((req: InternalAxiosRequestConfig) => {
   req.withCredentials = true;
+  req.headers["Access-Control-Allow-Origin"] = "*";
   return req;
 });
 
