@@ -60,7 +60,7 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
       };
       addEventsMutation.mutate(newEvent);
       alert("new meeting is successfully added.");
-      //location.reload();
+      location.reload();
     }
   };
 
