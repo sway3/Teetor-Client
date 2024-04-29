@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { DateCalendar, PickersDay, PickersDayProps } from '@mui/x-date-pickers';
-import { Dayjs } from 'dayjs';
-import { Badge } from '@mui/material';
-import { Button, CalendarTitle } from './style';
-import DatePicker from './DatePicker';
-import useLoadEvents from '../../hooks/useLoadEvents';
+import React, { useState } from "react";
+import { DateCalendar, PickersDay, PickersDayProps } from "@mui/x-date-pickers";
+import { Dayjs } from "dayjs";
+import { Badge } from "@mui/material";
+import { Button, CalendarTitle } from "./style";
+import DatePicker from "./DatePicker";
+import useLoadEvents from "../../hooks/useLoadEvents";
 
 interface CalendarProps {
   sessionId: string;
@@ -45,8 +45,8 @@ const Calendar: React.FC<CalendarProps> = ({
     return (
       <Badge
         key={props.day.toString()}
-        overlap='circular'
-        badgeContent={isSelected ? '✅' : undefined}
+        overlap="circular"
+        badgeContent={isSelected ? "✅" : undefined}
       >
         <PickersDay
           {...other}
@@ -78,10 +78,7 @@ const Calendar: React.FC<CalendarProps> = ({
       )}
 
       {!isDisplay && (
-        <Button
-          onClick={newSessionHandler}
-          width='200px'
-        >
+        <Button onClick={newSessionHandler} width="200px">
           Plan New Session
         </Button>
       )}

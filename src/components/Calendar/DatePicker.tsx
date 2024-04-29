@@ -1,8 +1,8 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
-import { DateTimePicker } from '@mui/x-date-pickers';
-import { useMutation } from '@tanstack/react-query';
-import { addNewEventReq } from '../../apis/mentoringAPIs';
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import dayjs, { Dayjs } from "dayjs";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { useMutation } from "@tanstack/react-query";
+import { addNewEventReq } from "../../apis/mentoringAPIs";
 import {
   Button,
   ButtonWrapper,
@@ -10,8 +10,8 @@ import {
   Form,
   NewEventWrapper,
   TitleInput,
-} from './style';
-import useLoadEvents from '../../hooks/useLoadEvents';
+} from "./style";
+import useLoadEvents from "../../hooks/useLoadEvents";
 
 interface DateTimePickerProps {
   sessionId: string;
@@ -26,8 +26,8 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
 }) => {
   const [pickedDate, setPickedDate] = useState<Dayjs | null>(dayjs(new Date()));
   const [newEventForm, setNewEventForm] = useState<any>({
-    title: '',
-    description: '',
+    title: "",
+    description: "",
   });
 
   const { loadedevents } = useLoadEvents(sessionId);
@@ -58,8 +58,8 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
         description: newEventForm.description,
       };
       addEventsMutation.mutate(newEvent);
-      alert('new meeting is successfully added.');
-      location.reload();
+      alert("new meeting is successfully added.");
+      //location.reload();
     }
   };
 
@@ -76,14 +76,14 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
       />
       <Form onSubmit={submitNewSessionHandler}>
         <TitleInput
-          type='text'
-          name='title'
-          placeholder='enter title'
+          type="text"
+          name="title"
+          placeholder="enter title"
           value={newEventForm.title}
           onChange={formChangeHandler}
         />
         <DescriptionInput
-          name='description'
+          name="description"
           value={newEventForm.description}
           onChange={formChangeHandler}
         />
