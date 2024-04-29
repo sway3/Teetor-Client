@@ -29,6 +29,7 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
     title: "",
     description: "",
   });
+  console.log(pickedDate);
 
   const { loadedevents } = useLoadEvents(sessionId);
 
@@ -59,7 +60,7 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
       };
       addEventsMutation.mutate(newEvent);
       alert("new meeting is successfully added.");
-      //location.reload();
+      location.reload();
     }
   };
 
