@@ -30,6 +30,7 @@ const ProfilePage: React.FC = () => {
   const logoutHandler = async () => {
     const response = await userLogout();
     if (response.status === 200) {
+      localStorage.removeItem("id");
       window.location.reload();
     }
   };
