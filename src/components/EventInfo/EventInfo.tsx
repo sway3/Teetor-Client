@@ -1,8 +1,8 @@
-import { Dayjs } from 'dayjs';
-import React, { useState } from 'react';
-import useLoadEvents from '../../hooks/useLoadEvents';
-import { useMutation } from '@tanstack/react-query';
-import { deleteEventReq } from '../../apis/mentoringAPIs';
+import { Dayjs } from "dayjs";
+import React, { useState } from "react";
+import useLoadEvents from "../../hooks/useLoadEvents";
+import { useMutation } from "@tanstack/react-query";
+import { deleteEventReq } from "../../apis/mentoringAPIs";
 import {
   Description,
   Title,
@@ -10,19 +10,16 @@ import {
   EventTitle,
   ButtonWrapper,
   Button,
-} from './style';
-import DateEditor from '../Calendar/DateEditor';
-import moment from 'moment';
+} from "./style";
+import DateEditor from "../Calendar/DateEditor";
+import moment from "moment";
 
 interface EventInfoProps {
   pickedDate: Dayjs | null;
   sessionId: string;
 }
 
-const EventInfo: React.FC<EventInfoProps> = ({
-  pickedDate,
-  sessionId,
-}) => {
+const EventInfo: React.FC<EventInfoProps> = ({ pickedDate, sessionId }) => {
   const { loadedevents, isPending } = useLoadEvents(sessionId);
   const [isEditEvent, setIsEditEvent] = useState<boolean>(false);
 
@@ -46,8 +43,11 @@ const EventInfo: React.FC<EventInfoProps> = ({
       eventId: eventInfo._id,
     };
     removeEventMutation.mutate(event);
-    alert('Successfully removed meeting');
-    location.reload();
+
+    if (removeEventMutation.isSuccess) {
+      alert("Successfully removed meeting");
+      location.reload();
+    }
   };
 
   return (
@@ -60,7 +60,7 @@ const EventInfo: React.FC<EventInfoProps> = ({
             <>
               <EventTitle>{eventInfo.title}</EventTitle>
               <DateTime>
-                {moment(eventInfo?.date).format().slice(0, 10)}{' '}
+                {moment(eventInfo?.date).format().slice(0, 10)}{" "}
                 {moment(eventInfo.date).format().slice(11, 16)}
               </DateTime>
               <Description>{eventInfo.description}</Description>

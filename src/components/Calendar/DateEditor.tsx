@@ -1,10 +1,10 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
-import { PickersDay, PickersDayProps } from '@mui/x-date-pickers';
-import dayjs, { Dayjs } from 'dayjs';
-import { Badge } from '@mui/material';
-import { DateTimePicker } from '@mui/x-date-pickers';
-import { useMutation } from '@tanstack/react-query';
-import { editEventReq } from '../../apis/mentoringAPIs';
+import React, { ChangeEvent, FormEvent, useState } from "react";
+import { PickersDay, PickersDayProps } from "@mui/x-date-pickers";
+import dayjs, { Dayjs } from "dayjs";
+import { Badge } from "@mui/material";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { useMutation } from "@tanstack/react-query";
+import { editEventReq } from "../../apis/mentoringAPIs";
 import {
   Button,
   ButtonWrapper,
@@ -12,8 +12,8 @@ import {
   Form,
   NewEventWrapper,
   TitleInput,
-} from './style';
-import useLoadEvents from '../../hooks/useLoadEvents';
+} from "./style";
+import useLoadEvents from "../../hooks/useLoadEvents";
 
 interface DateTimePickerProps {
   sessionId: string;
@@ -60,8 +60,8 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
     return (
       <Badge
         key={props.day.toString()}
-        overlap='circular'
-        badgeContent={isSelected ? '✅' : undefined}
+        overlap="circular"
+        badgeContent={isSelected ? "✅" : undefined}
       >
         <PickersDay
           {...other}
@@ -102,8 +102,10 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
 
       editEventMutation.mutate(newEvent);
 
-      alert('Meeting is successfully edited.');
-      location.reload();
+      if (editEventMutation.isSuccess) {
+        alert("Meeting is successfully edited.");
+        location.reload();
+      }
     }
   };
 
@@ -121,14 +123,14 @@ const DateEditor: React.FC<DateTimePickerProps> = ({
       />
       <Form onSubmit={submitEditSessionHandler}>
         <TitleInput
-          type='text'
-          name='title'
-          placeholder='enter title'
+          type="text"
+          name="title"
+          placeholder="enter title"
           value={newEventForm.title}
           onChange={formChangeHandler}
         />
         <DescriptionInput
-          name='description'
+          name="description"
           value={newEventForm.description}
           onChange={formChangeHandler}
         />

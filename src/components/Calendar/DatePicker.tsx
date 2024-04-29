@@ -59,8 +59,11 @@ const DatePicker: React.FC<DateTimePickerProps> = ({
         description: newEventForm.description,
       };
       addEventsMutation.mutate(newEvent);
-      alert("new meeting is successfully added.");
-      location.reload();
+
+      if (addEventsMutation.isSuccess) {
+        alert("new meeting is successfully added.");
+        location.reload();
+      }
     }
   };
 
