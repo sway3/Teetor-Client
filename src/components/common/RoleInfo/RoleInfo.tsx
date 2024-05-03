@@ -20,6 +20,7 @@ const RoleInfo: React.FC<RoleInfoProps> = ({ roleInfo }) => {
   return (
     <RoleInfoWrapper>
       <RoleInfoTitle>Mentor Profile</RoleInfoTitle>
+      <RoleInfoTitle>Profession</RoleInfoTitle>
       <SkillsWrapper>
         {roleInfo.profession.map((prof, index) => (
           <Skills key={index}>{prof}</Skills>
